@@ -36,6 +36,7 @@ let allProducts=[{
 ]
 
 
+// this function is to put the data to carts in localstorage 
 const addToCard=(produtId)=>{
 
     let products=[]
@@ -72,7 +73,7 @@ const addToCard=(produtId)=>{
 }
 
 
-
+// This function will render dynamic data 
 
 const renderCard=(id,title,description,price,image,renderDiv)=>{
 
@@ -129,22 +130,15 @@ const renderCard=(id,title,description,price,image,renderDiv)=>{
         
     }
 
-
-
-
-
-  
-
     card.append(cardImg);
     card.append(cardBody);
 
-
     document.getElementById(renderDiv).append(card)
-
 
 }
 
 
+// it will print all the cart product from the localstorge 
 
 const printAllCartProducts=()=>{
     let cartsProduct= JSON.parse(localStorage.getItem("cart"));
@@ -153,6 +147,8 @@ const printAllCartProducts=()=>{
         renderCard(item.id,item.title,item.description,item.price,item.url,"list_all")
     });
 }
+
+// this fn take paramater to remvoe the item from local stroage 
 
 const remvoeItem=(id)=>{
     let cartsProduct= JSON.parse(localStorage.getItem("cart"));
@@ -165,6 +161,10 @@ const remvoeItem=(id)=>{
     
 }   
 
+
+// This function is used to create a new product 
+// it take the id from the modal and create a new object 
+// push the code to the allProduct and render the object in arrival section 
 const createProduct=(data)=>{
     let pname=document.getElementById("p_name").value
     let pDecs=document.getElementById("p_description").value
@@ -179,11 +179,47 @@ const createProduct=(data)=>{
         url:"images/Default_Image_Thumbnail.png"
     })
 
-
-
-
     renderCard(id,pname,pDecs,pPrice,"/images/Default_Image_Thumbnail.png","new_arrival")
 
     return false;
+}
+
+
+
+// it is the raw function to match teh word and retun the array with the help of regular expression 
+function findMatches(wordToMatch) {
+    return allProducts.filter(product => {
+      // here we need to figure out if the city or state matches what was searched
+      const regex = new RegExp(wordToMatch, 'gi');
+      return product.title.match(regex) || product.description.match(regex)
+    });
+}
+
+// This function will take the user input from the home page and find the 
+// item that is associate with the given text 
+const serachItems=(e)=>{
+    let res = findMatches(e.value);
+
+    let allItems = document.getElementById("all_search_item");
+
+    if(res.length===0){
+        allItems.replaceChildren();
+    }
+    res.map(item=>{
+        renderSearchItem(item.title,item.price,item.url)
+    })
+}
+
+// Rendering Search item 
+const renderSearchItem=(title,price,url)=>{
+    let allItems = document.getElementById("all_search_item");
+    allItems.replaceChildren();
+
+    let li = document.createElement("li");
+    let img = document.createElement("img");
+    img.src="/"+url;
+    li.append(img);
+    li.append(`${title}, ${price}`)
+    allItems.append(li)
 }
 

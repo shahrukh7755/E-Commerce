@@ -129,3 +129,15 @@ body.body-container .container .electronics .card img {
   height: 250px;
 }
 /*# sourceMappingURL=main.css.map */
+
+
+.display_search{
+  background: #fff;
+}
+
+.display_search ul{
+  list-style-type: none;
+}
+.display_search ul img{
+  width: 50px;
+}

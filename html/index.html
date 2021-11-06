@@ -26,8 +26,13 @@
 
     <div class="search-bar">
       <form>
-        <input type="text" placeholder="Search.." name="search">
+        <input type="text" placeholder="Search.." name="search" onkeypress="serachItems(this)">
       </form>
+      <div class="display_search">
+          <ul id="all_search_item">
+            <!-- <li><img src="/images/mobiles/iphone-13-promax.jpg"> Apple, $200</li> -->
+          </ul>
+      </div>
     </div>
 
     <div class="main-nav">
