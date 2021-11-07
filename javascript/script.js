@@ -1,73 +1,122 @@
-let allProducts=[{
-    id:1,
-    title:"APPLE",
-    description:"OnePlus",
-    price:"1,13000 ₹",
-    url:"images/mobiles/iphone-13-promax.jpg"
+let allProducts = [{
+    id: 1,
+    title: "APPLE",
+    description: "OnePlus",
+    price: "1,13000 ₹",
+    url: "images/mobiles/iphone-13-promax.jpg"
 },
 {
-    id:2,
-    title:"OnePlus",
-    description:"OnePlus Nord CE 5G (Blue Void, 8GB RAM, 128GB Storage)",
-    price:"27,999 ₹",
-    url:"images/mobiles/OnePlus-Nord.jpg"
+    id: 2,
+    title: "OnePlus",
+    description: "OnePlus Nord CE 5G (Blue Void, 8GB RAM, 128GB Storage)",
+    price: "27,999 ₹",
+    url: "images/mobiles/OnePlus-Nord.jpg"
 },
 {
-    id:3,
-    title:"SAMSUNG",
-    description:"SAMSUNG Galaxy S10 Plus (Ceramic White, 1 TB) (12 GB RAM)",
-    price:"79,999 ₹",
-    url:"images/mobiles/sumsung-s10-plus.jpg"
+    id: 3,
+    title: "SAMSUNG",
+    description: "SAMSUNG Galaxy S10 Plus (Ceramic White, 1 TB) (12 GB RAM)",
+    price: "79,999 ₹",
+    url: "images/mobiles/sumsung-s10-plus.jpg"
 },
 {
-    id:4,
-    title:"REDMI",
-    description:"REDMI Note 8 Pro (Electric Blue, 128 GB) (6 GB RAM)",
-    price:"21.999 ₹",
-    url:"images/mobiles/xiaomi_redmi_note_8_pro.jpg"
+    id: 4,
+    title: "REDMI",
+    description: "REDMI Note 8 Pro (Electric Blue, 128 GB) (6 GB RAM)",
+    price: "21.999 ₹",
+    url: "images/mobiles/xiaomi_redmi_note_8_pro.jpg"
 },
 {
-    id:5,
-    title:"Christy World ",
-    description:"Full Sleeve Solid Men Padded Jacket",
-    price:"999 ₹",
-    url:"images/winter-season/men-jacket-1.jpeg"
-}
+    id: 5,
+    title: "Christy World ",
+    description: "Full Sleeve Solid Men Padded Jacket",
+    price: "999 ₹",
+    url: "images/winter-season/men-jacket-1.jpeg"
+},
+{
+    id: 6,
+    title: "Funday Fashion ",
+    description: "Full Sleeve Solid Women Jacket, denim jacket",
+    price: "1999 ₹",
+    url: "images/winter-season/women-jacket-1.jpeg",
+},
+{
+    id: 7,
+    title: "BLIVE ",
+    description: "Full Sleeve Printed Men Casual Jacket",
+    price: "2500 ₹",
+    url: "images/winter-season/men-jacket-2.jpeg",
+},
+{
+    id: 8,
+    title: "DARZI ",
+    description: "Full Sleeve Solid Women Casual Jacket",
+    price: "2100 ₹",
+    url: "images/winter-season/women-jacket-2.jpg",
+},
+{
+    id: 9,
+    title: "Inalsa ",
+    description: "Inalsa Electric Kettle PRISM with LED Illumination,Boro-Silicate Body, 1.8 L Capacity, Glass Kettle",
+    price: "2200 ₹",
+    url: "/images/electronics/electric-kattel.jpg",
+},
+{
+    id: 10,
+    title: "Nikon ",
+    description: "Nikon D7500 20.9MP Digital SLR Camera (Black) with AF-S DX NIKKOR 18-140mm",
+    price: "97,000 ₹",
+    url: "/images/electronics/nikon-camera.jpeg",
+},
+{
+    id: 11,
+    title: "P1028100613 ",
+    description: "PHILIPS Men's BT310/15 Beard Trimmer with Lift and Trim System of Runtime: 45 min",
+    price: "1700 ₹",
+    url: "/images/electronics/philips-Trimmer.jpeg",
+},
+{
+    id: 12,
+    title: "Zinq Technologies Beast ",
+    description: "Zinq Technologies Beast Portable Laptop/Desktop USB 2.0 Powered Multimedia Speaker",
+    price: "2500 ₹",
+    url: "/images/electronics/speaker.jpeg",
+},
 ]
 
 
 // this function is to put the data to carts in localstorage 
-const addToCard=(produtId)=>{
+const addToCard = (produtId) => {
 
-    let products=[]
+    let products = []
 
 
-    let oldProduct= JSON.parse(localStorage.getItem("cart"));
-    
-    if(oldProduct!==null){
-        products=[...oldProduct]
+    let oldProduct = JSON.parse(localStorage.getItem("cart"));
+
+    if (oldProduct !== null) {
+        products = [...oldProduct]
     }
-  
-   let current= allProducts.find(item=>{
-       return  item.id===produtId
+
+    let current = allProducts.find(item => {
+        return item.id === produtId
     })
 
     // checking the product is avaialbe in our cart
 
-    let isExist = products.find(item=>{
-        return (item.id===produtId)
+    let isExist = products.find(item => {
+        return (item.id === produtId)
     })
 
     console.log(isExist)
 
-    if(isExist===undefined){
+    if (isExist === undefined) {
         products.push(current)
-        localStorage.setItem("cart",JSON.stringify(products))
-        document.getElementById("cartItems").innerHTML=products.length;
-    }else{
+        localStorage.setItem("cart", JSON.stringify(products))
+        document.getElementById("cartItems").innerHTML = products.length;
+    } else {
         alert("product is already in cart")
-        localStorage.setItem("cart",JSON.stringify(products))
-        document.getElementById("cartItems").innerHTML=products.length;
+        localStorage.setItem("cart", JSON.stringify(products))
+        document.getElementById("cartItems").innerHTML = products.length;
     }
 
 }
@@ -75,59 +124,59 @@ const addToCard=(produtId)=>{
 
 // This function will render dynamic data 
 
-const renderCard=(id,title,description,price,image,renderDiv)=>{
+const renderCard = (id, title, description, price, image, renderDiv) => {
 
 
     let card = document.createElement("div")
-    card.id=id;
-    card.style="width: 18rem"
+    card.id = id;
+    card.style = "width: 18rem"
 
     let cardImg = document.createElement("img")
-    cardImg.src="../"+image
-    cardImg.style="width:200px"
+    cardImg.src = "../" + image
+    cardImg.style = "width:200px"
 
 
-    let cardBody=document.createElement("div");
-    cardBody.className="card-body";
-    let cardTitle=document.createElement("h5");
-    cardTitle.classList="card-title";
-    cardTitle.innerHTML=title
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+    let cardTitle = document.createElement("h5");
+    cardTitle.classList = "card-title";
+    cardTitle.innerHTML = title
 
     let cardDescription = document.createElement("p")
-    cardDescription.className="card-text";
-    cardDescription.innerHTML=description
+    cardDescription.className = "card-text";
+    cardDescription.innerHTML = description
 
     let cardPrice = document.createElement("p")
-    cardPrice.className="card-text";
-    cardPrice.innerHTML=price
+    cardPrice.className = "card-text";
+    cardPrice.innerHTML = price
 
     cardBody.append(cardTitle)
     cardBody.append(cardDescription)
     cardBody.append(cardPrice)
 
 
-    if(renderDiv!="new_arrival"){
+    if (renderDiv != "new_arrival") {
         let removeBtn = document.createElement("button")
-        removeBtn.innerHTML="Remove Item"
-    
-        removeBtn.addEventListener("click",()=>{
+        removeBtn.innerHTML = "Remove Item"
+
+        removeBtn.addEventListener("click", () => {
             remvoeItem(id)
         })
         cardBody.append(removeBtn)
     }
 
-    if(renderDiv==="new_arrival"){
+    if (renderDiv === "new_arrival") {
         let addtoCardButton = document.createElement("a");
-        addtoCardButton.classList="btn btn-primary"
+        addtoCardButton.classList = "btn btn-primary"
         let cardIcon = document.createElement("i");
-        cardIcon.classList="fa fa-cart-plus px-1"
+        cardIcon.classList = "fa fa-cart-plus px-1"
         addtoCardButton.append(cardIcon)
         addtoCardButton.append("Add to Card")
         cardBody.append(addtoCardButton)
-        addtoCardButton.addEventListener("click",()=>{
+        addtoCardButton.addEventListener("click", () => {
             addToCard(id)
         })
-        
+
     }
 
     card.append(cardImg);
@@ -140,46 +189,46 @@ const renderCard=(id,title,description,price,image,renderDiv)=>{
 
 // it will print all the cart product from the localstorge 
 
-const printAllCartProducts=()=>{
-    let cartsProduct= JSON.parse(localStorage.getItem("cart"));
+const printAllCartProducts = () => {
+    let cartsProduct = JSON.parse(localStorage.getItem("cart"));
 
     cartsProduct.map(item => {
-        renderCard(item.id,item.title,item.description,item.price,item.url,"list_all")
+        renderCard(item.id, item.title, item.description, item.price, item.url, "list_all")
     });
 }
 
 // this fn take paramater to remvoe the item from local stroage 
 
-const remvoeItem=(id)=>{
-    let cartsProduct= JSON.parse(localStorage.getItem("cart"));
+const remvoeItem = (id) => {
+    let cartsProduct = JSON.parse(localStorage.getItem("cart"));
 
-   let newData= cartsProduct.filter((item=>{
-        return item.id!==id
+    let newData = cartsProduct.filter((item => {
+        return item.id !== id
     }))
-    localStorage.setItem("cart",JSON.stringify(newData))
+    localStorage.setItem("cart", JSON.stringify(newData))
     document.getElementById(id).remove()
-    
-}   
+
+}
 
 
 // This function is used to create a new product 
 // it take the id from the modal and create a new object 
 // push the code to the allProduct and render the object in arrival section 
-const createProduct=(data)=>{
-    let pname=document.getElementById("p_name").value
-    let pDecs=document.getElementById("p_description").value
-    let pPrice=document.getElementById("p_price").value
-    let id=Math.random();
+const createProduct = (data) => {
+    let pname = document.getElementById("p_name").value
+    let pDecs = document.getElementById("p_description").value
+    let pPrice = document.getElementById("p_price").value
+    let id = Math.random();
 
     allProducts.push({
         id,
-        title:pname,
-        description:pDecs,
-        price:pPrice,
-        url:"images/Default_Image_Thumbnail.png"
+        title: pname,
+        description: pDecs,
+        price: pPrice,
+        url: "images/Default_Image_Thumbnail.png"
     })
 
-    renderCard(id,pname,pDecs,pPrice,"/images/Default_Image_Thumbnail.png","new_arrival")
+    renderCard(id, pname, pDecs, pPrice, "/images/Default_Image_Thumbnail.png", "new_arrival")
 
     return false;
 }
@@ -189,37 +238,37 @@ const createProduct=(data)=>{
 // it is the raw function to match teh word and retun the array with the help of regular expression 
 function findMatches(wordToMatch) {
     return allProducts.filter(product => {
-      // here we need to figure out if the city or state matches what was searched
-      const regex = new RegExp(wordToMatch, 'gi');
-      return product.title.match(regex) || product.description.match(regex)
+        // here we need to figure out if the city or state matches what was searched
+        const regex = new RegExp(wordToMatch, 'gi');
+        return product.title.match(regex) || product.description.match(regex)
     });
 }
 
 // This function will take the user input from the home page and find the 
 // item that is associate with the given text 
-const serachItems=(e)=>{
+const serachItems = (e) => {
     let res = findMatches(e.value);
 
     let allItems = document.getElementById("all_search_item");
 
-    if(res.length===0){
+    if (res.length === 0) {
         allItems.replaceChildren();
     }
-    res.map(item=>{
-        renderSearchItem(item.title,item.price,item.url)
+    res.map(item => {
+        renderSearchItem(item.title, item.price, item.url)
     })
 }
 
 // Rendering Search item 
-const renderSearchItem=(title,price,url)=>{
+const renderSearchItem = (title, price, url) => {
     let allItems = document.getElementById("all_search_item");
     allItems.replaceChildren();
 
     let li = document.createElement("li");
     let img = document.createElement("img");
-    img.src="/"+url;
+    img.src = "/" + url;
     li.append(img);
-    li.append(`${title}, ${price}`)
+    li.append(`${title}, ${price}`);
     allItems.append(li)
 }
 

@@ -11,10 +11,6 @@ body.body-container section.container-fluid {
           box-shadow: 1px 9px 15px 5px black;
 }
 
-.carts{
-  background: #fff;
-}
-
 body.body-container section.container-fluid .search-bar input {
   width: 500px;
   height: 35px;
@@ -22,6 +18,14 @@ body.body-container section.container-fluid .search-bar input {
   border: none;
   -webkit-box-shadow: 1px 2px 20px 6px #757272;
           box-shadow: 1px 2px 20px 6px #757272;
+}
+
+body.body-container section.container-fluid .main-nav .active:hover {
+  background-color: white;
+  color: black;
+  -webkit-box-shadow: 1px 1px 5px 2px #e4bebe;
+          box-shadow: 1px 1px 5px 2px #e4bebe;
+  border-radius: 20%;
 }
 
 body.body-container section.container-fluid .main-nav a {
@@ -129,15 +133,3 @@ body.body-container .container .electronics .card img {
   height: 250px;
 }
 /*# sourceMappingURL=main.css.map */
-
-
-.display_search{
-  background: #fff;
-}
-
-.display_search ul{
-  list-style-type: none;
-}
-.display_search ul img{
-  width: 50px;
-}

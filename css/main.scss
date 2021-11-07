@@ -16,6 +16,12 @@ body.body-container{
         }
 
         .main-nav{
+            .active:hover{
+                background-color: rgb(255, 255, 255);
+                color: rgb(0, 0, 0);
+                box-shadow: 1px 1px 5px 2px rgb(228, 190, 190);
+                border-radius: 20%;
+            }
 
             a{
                 text-decoration: none;
